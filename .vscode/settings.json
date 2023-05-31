@@ -1,4 +1,22 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "window.autoDetectColorScheme": false,
+    "window.closeWhenEmpty": false,
+    "window.commandCenter": true,
+    "zenMode.centerLayout": true,
+    "screencastMode.hideSingleEditorCursorMoves": false,
+    "explorer.decorations.colors": false,
+    "explorer.fileNesting.expand": true,
+    "explorer.fileNesting.enabled": true,
+    "explorer.excludeGitIgnore": false,
+    "explorer.autoReveal": true,
+    "workbench.activityBar.iconClickBehavior": "toggle",
+    "workbench.activityBar.visible": true,
+    "workbench.preferredHighContrastLightColorTheme": "Default High Contrast Light",
+    "workbench.preferredLightColorTheme": "Default Light Modern",
+    "workbench.statusBar.visible": true,
+    "workbench.tree.renderIndentGuides": "onHover",
+    "breadcrumbs.enabled": true,
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
