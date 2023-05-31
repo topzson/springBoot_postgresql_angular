@@ -1,13 +1,25 @@
 package com.topzson.training.backend.entity;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Entity(name = "m_user")
 
-public class User {
-    @Id
-    private String id;
+public class User extends BaseEntity {
 
+    @Column(nullable = false, unique = true, length = 60)
+    private String email;
+
+    @JsonIgnore
+    @Column(nullable = false, length = 120)
+    private String password;
+
+    @Column(nullable = false, length = 120)
+    private String name;
 }

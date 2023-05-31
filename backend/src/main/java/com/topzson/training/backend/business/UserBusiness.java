@@ -3,26 +3,29 @@ package com.topzson.training.backend.business;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.topzson.training.backend.entity.User;
 import com.topzson.training.backend.exception.BaseException;
 import com.topzson.training.backend.exception.FileException;
-import com.topzson.training.backend.exception.UserException;
 import com.topzson.training.backend.model.RegisterRequest;
+import com.topzson.training.backend.services.UserService;
 
 @Service
-public class TestBusiness {
-    public String register(RegisterRequest request) throws BaseException {
-        if (request == null) {
-            throw UserException.requestNull();
-        }
-        if (Objects.isNull(request.getEmail())) {
-            throw UserException.emailNull();
-        }
-        return "";
+public class UserBusiness {
+
+    private final UserService userService;
+
+    public UserBusiness(UserService userService) {
+        this.userService = userService;
+    }
+
+    public User register(RegisterRequest request) throws BaseException {
+        User user = userService.create(request.getEmail(), request.getPassword(), request.getName());
+        // TODO: mapper
+        return user;
     }
 
     public String uploadProfilePicture(MultipartFile file) throws FileException {
