@@ -4,7 +4,10 @@ import lombok.Data;
 
 @Data
 
-public class TestResponse {
+public class RegisterResponse {
+    private String email;
+
+    private String password;
+
     private String name;
-    private String food;
 }

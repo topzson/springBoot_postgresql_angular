@@ -1,6 +1,7 @@
 package com.topzson.training.backend.services;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,14 @@ public class UserService {
     public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    public Optional<User> findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    public boolean matchPassword(String rawPassword, String encodedPassword){
+        return passwordEncoder.matches(rawPassword, encodedPassword);
     }
 
     public User create(String email, String password, String name) throws BaseException {
@@ -49,4 +58,5 @@ public class UserService {
         return repository.save(entity);
 
     }
+
 }

@@ -35,4 +35,14 @@ public class UserException extends BaseException {
         return new UserException("create.name.null");
     }
 
+    // login
+
+    public static UserException loginFailEmailNotFound() {
+        return new UserException("login.fail");
+    }
+
+    public static UserException loginFailPasswordIncorrect() {
+        return new UserException("login.fail");
+    }
+
 }
