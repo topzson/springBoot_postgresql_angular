@@ -32,15 +32,15 @@ public class UserBusiness {
     public String login(LoginRequest request) throws BaseException {
         // validate
 
-        // verif database
+        // verify database
         Optional<User> opt = userService.findByEmail(request.getEmail());
         if (opt.isEmpty()) {
             throw UserException.loginFailEmailNotFound();
         }
         User user = opt.get();
-        if (!userService.matchPassword(request.getPasswoed(), user.getPassword())) {
+        if (!userService.matchPassword(request.getPassword(), user.getPassword())) {
             throw UserException.loginFailPasswordIncorrect();
-        
+
         }
 
         String token = "JWT to do";

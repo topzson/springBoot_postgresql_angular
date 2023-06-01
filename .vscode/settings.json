@@ -18,5 +18,5 @@
     "workbench.statusBar.visible": true,
     "workbench.tree.renderIndentGuides": "onHover",
     "breadcrumbs.enabled": true,
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

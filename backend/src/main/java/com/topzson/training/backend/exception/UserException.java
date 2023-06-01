@@ -14,7 +14,7 @@ public class UserException extends BaseException {
     }
 
     public static UserException requestNull() {
-        return new UserException("register.email.null");
+        return new UserException("register.request.null");
     }
 
     // create
@@ -43,6 +43,16 @@ public class UserException extends BaseException {
 
     public static UserException loginFailPasswordIncorrect() {
         return new UserException("login.fail");
+    }
+
+    public static UserException notFound() {
+        return new UserException("user.not.found");
+    }
+
+    // UPDATE
+
+    public static UserException updateNameNull() {
+        return new UserException("update.name.null");
     }
 
 }
