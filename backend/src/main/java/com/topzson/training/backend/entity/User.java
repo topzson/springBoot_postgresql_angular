@@ -1,9 +1,13 @@
 package com.topzson.training.backend.entity;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -24,5 +28,11 @@ public class User extends BaseEntity {
     private String name;
 
     private String civiId;
+
+    @OneToOne(mappedBy = "user", orphanRemoval = true)
+    private Social social;
+
+    @OneToMany(mappedBy = "user")
+    private List<Address> addresses;
 
 }

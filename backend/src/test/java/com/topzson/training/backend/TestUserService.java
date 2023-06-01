@@ -10,8 +10,11 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.topzson.training.backend.entity.Social;
 import com.topzson.training.backend.entity.User;
 import com.topzson.training.backend.exception.BaseException;
+import com.topzson.training.backend.exception.UserException;
+import com.topzson.training.backend.services.SocialService;
 import com.topzson.training.backend.services.UserService;
 
 @SpringBootTest
@@ -21,6 +24,8 @@ class TestUserService {
 
     @Autowired
     private UserService userService;
+
+    private SocialService socialService;
 
     @Order(1)
     @Test
@@ -61,6 +66,29 @@ class TestUserService {
 
     @Test
     @Order(3)
+    void testCreateSocial() throws UserException {
+        Optional<User> opt = userService.findByEmail(TestCreateData.email);
+        Assertions.assertTrue(opt.isPresent());
+
+        User user = opt.get();
+
+        Social social = user.getSocial();
+        Assertions.assertNull(social);
+        social = socialService.create(
+                user,
+                SocialTestCreatedata.facebook,
+                SocialTestCreatedata.line,
+                SocialTestCreatedata.instagram,
+                SocialTestCreatedata.tiktok
+
+        );
+        Assertions.assertNotNull(social);
+        Assertions.assertEquals(SocialTestCreatedata.facebook, social.getFacebook());
+
+    }
+
+    @Test
+    @Order(9)
     void testDelete() {
         Optional<User> opt = userService.findByEmail(TestCreateData.email);
         Assertions.assertTrue(opt.isPresent());
@@ -77,6 +105,20 @@ class TestUserService {
         String email = "GG@game.com";
         String password = "asssaasdqwe1121sd";
         String name = "asdasd";
+    }
+
+    interface SocialTestCreatedata {
+        String facebook = "topzson";
+        String line = "";
+        String instagram = "";
+        String tiktok = "";
+
+    }
+
+    interface AddressTestCreateData {
+        String line1 = "12345";
+        String line2 = "Muu";
+        String zipcoe = "32112";
     }
 
     interface TestUpdateData {
