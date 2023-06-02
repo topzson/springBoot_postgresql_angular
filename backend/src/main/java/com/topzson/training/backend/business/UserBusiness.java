@@ -15,6 +15,7 @@ import com.topzson.training.backend.exception.UserException;
 import com.topzson.training.backend.mapper.UserMapper;
 import com.topzson.training.backend.model.LoginRequest;
 import com.topzson.training.backend.model.RegisterRequest;
+import com.topzson.training.backend.services.TokenService;
 import com.topzson.training.backend.services.UserService;
 
 @Service
@@ -24,8 +25,11 @@ public class UserBusiness {
 
     private final UserMapper userMapper;
 
-    public UserBusiness(UserService userService, UserMapper userMapper) {
+    private final TokenService tokenService;
+
+    public UserBusiness(UserService userService, UserMapper userMapper, TokenService tokenService) {
         this.userService = userService;
+        this.tokenService = tokenService;
         this.userMapper = userMapper;
     }
 
@@ -43,9 +47,7 @@ public class UserBusiness {
 
         }
 
-        String token = "JWT to do";
-
-        return token;
+        return tokenService.tokenize(user);
 
     }
 
